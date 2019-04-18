@@ -2,7 +2,7 @@
   <div class="home">
     <Nav/>
       <Welcome/>
-    <Footer/>
+    <Footer class="footer"/>
   </div>
 </template>
 
