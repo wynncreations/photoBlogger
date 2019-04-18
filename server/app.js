@@ -45,6 +45,9 @@ app.use(passport.session());
 
 
 
+
+
+
 //Routes
 app.use('/', index);
 app.use('/blogs', blogs);
