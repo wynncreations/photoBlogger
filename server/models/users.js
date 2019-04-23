@@ -12,7 +12,7 @@ var UserSchema = new Schema({
   firstName:String,
   lastName:String,
   FullName:String,
-  dateCreate:Date.now()
+  dateCreate:Date
 });
 
 UserSchema.plugin(passportLocalMongoose);;

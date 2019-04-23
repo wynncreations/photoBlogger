@@ -8,8 +8,8 @@ const cookieParser = require('cookie-parser');
 const app = express();
 const session = require('express-session');
 const blogs = require("./routes/blogs");
-
-
+const users = require('./routes/users');
+const passport = require('passport');
 //db connection
 var mongoDB = "mongodb+srv://photobloggeradmin:"+process.env.DBPASS+"@cluster0-m3gvu.mongodb.net/PhotoBlogger?retryWrites=true";
 mongoose.connect(mongoDB, { useNewUrlParser: true });
@@ -21,7 +21,7 @@ var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 
-const port = process.env.PORT || 8000
+const port = process.env.PORT || 8080
 
 app.use(express.json());
 app.use(express.urlencoded({
@@ -45,19 +45,13 @@ app.use(passport.session());
 
 
 
-
-
-
 //Routes
-app.use('/', index);
-app.use('/blogs', blogs);
+app.use('/api', index);
+app.use('/api/blogs', blogs);
+app.use('/api/users',users);
+
 
 //Fire up the server.
 app.listen(port, ()=>{
     console.log("Server is now running on port ",port);
 });
-
-
-
-
-
