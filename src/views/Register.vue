@@ -4,12 +4,12 @@
         <form class='regForm' method="POST" action="/api/users/register">
           Email<input type="email" name="username" v-model="username" required>
           <input type="password" name="password" v-model="password" required>
-          <input type="password" v-bind:class="[{equal: isEqual},{notEqual:!isEqual}]" name="cPassword" v-model="cPassword" required>
+          <input type="password" v-bind:class="[{equal: isEqual && !isEmpty},{notEqual:!isEqual && !isEmpty}]" name="cPassword" v-model="cPassword" required>
           <input type="text" name="firstName" v-model="firstName" required>
           <input type="text" name="lastName" v-model="lastName" required>
           <input type="hidden" name="fullName" v-model="fullName" required>
           <input type="hidden" name="dateCreated" v-model="date" required>
-          <button type="submit" v-if="isEqual" v-on:click="register()">Register</button>
+          <button type="submit" v-if="isEqual && !isEmpty" v-on:click="register()">Register</button>
         </form>
     <Footer/>
   </div>
@@ -47,6 +47,13 @@ export default {
     },
     isEqual: function(){//password and confirm password need to be equal
       if(this.password === this.cPassword){
+        return true;
+      }else{
+        return false;
+      }
+    },
+    isEmpty: function(){
+      if(this.password === ''){
         return true;
       }else{
         return false;
